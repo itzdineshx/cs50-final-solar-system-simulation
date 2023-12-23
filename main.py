@@ -12,7 +12,7 @@ pygame.display.set_caption("Solar System Simulation")
 # Set fonts and legend texts
 FONT = pygame.font.SysFont("Consolas", 18)
 PAUSE_FONT = pygame.font.SysFont("Consolas", 24)
-LEGEND_TEXTS = ["P Pause", "M Mute", "I Info off", "Q Quit", 
+LEGEND_TEXTS = ["P Pause", "M Mute", "I Info off", "Q Quit",
                 "0 Sun", "1 Mercury", "2 Venus", "3 Earth", "4 Mars", "5 Jupiter", "6 Saturn", "7 Uranus", "8 Neptune"]
 
 # Open the background music and play it on loop
@@ -51,10 +51,10 @@ def main():
                         pause_text = PAUSE_FONT.render("PAUSED", 1, (255, 255, 255))
                         win.blit(pause_text, (WIDTH / 2 - pause_text.get_width() / 2, 20))
                         pygame.display.update()
-                                    
+
                 # Check if user pressed the keys 1-8
                 if pygame.K_0 <= event.key <= pygame.K_8:
-                    # Shift it by 48 to the lef tomatch their original indexes 
+                    # Shift it by 48 to the lef tomatch their original indexes
                     # (K_0 ASCII value is 48, planets start from index 0, hence minus 48)
                     planet_index = event.key - pygame.K_0 # 48
                     displayed_planet = planet_list[planet_index]
@@ -81,7 +81,7 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if displayed_planet:
                     displayed_planet = None
-        
+
         # Calculate gravitational forces exerted on planets
         if not paused:
             # Keep track of the time passed since start of the simulation to be displayed later
@@ -157,7 +157,7 @@ def main():
                 win.blit(planet_info_text_2, (10, 40))
                 # Blit image to the bottom left corner of the screen
                 win.blit(source_text, (10, HEIGHT - 20))
-                win.blit(pygame.transform.scale(pygame.image.load(f"assets\images\planets\\{displayed_planet.name.lower()}.jpg"), (250, 250)), 
+                win.blit(pygame.transform.scale(pygame.image.load(f"assets\images\planets\\{displayed_planet.name.lower()}.jpg"), (250, 250)),
                          (0, HEIGHT - 270))
                 # Blit astronomical symbol of the planet as an image
                 win.blit(pygame.image.load(f"assets\images\symbols\\{displayed_planet.name.lower()}.jpg"), (85, planet_info_text_2.get_height() + 20))
@@ -213,7 +213,7 @@ def main():
                         line_start = (WIDTH / 2, 50)
                         line_end = (neptune.x * neptune.SCALE + 1920 / 2, neptune.y * neptune.SCALE + 1080 / 2)
                         neptune_indicator = FONT.render("Neptune", 1, (255, 255, 255))
-                        pygame.draw.line(win, (255, 255, 255), line_start, line_end) 
+                        pygame.draw.line(win, (255, 255, 255), line_start, line_end)
                         win.blit(neptune_indicator, (line_start[0] - neptune_indicator.get_width() / 2, line_start[1] + 20))
                     elif neptune_out_down:
                         line_start = (WIDTH / 2, HEIGHT - 50)
@@ -224,7 +224,7 @@ def main():
             elif displayed_planet.name == "Uranus":
                 uranus = displayed_planet
                 uranus_out_up = uranus.y * uranus.SCALE + 1080 / 2 < 0
-                uranus_out_down = uranus.y * uranus.SCALE + 1080 / 2 > 1080 
+                uranus_out_down = uranus.y * uranus.SCALE + 1080 / 2 > 1080
                 if uranus_out_up or uranus_out_down:
                     text = FONT.render("Uranus is out of screen now", 1, uranus.color)
                     win.blit(text, (10, planet_info_text_2.get_height() + 40))
@@ -245,9 +245,9 @@ def main():
             # Display scale info to the bottom right corner of the screen
             scale_info_text = FONT.render("Distances are to scale, sizes are not to scale.", 1, (255, 255, 255))
             win.blit(scale_info_text, (WIDTH - scale_info_text.get_width(), HEIGHT - scale_info_text.get_height()))
-        
+
             pygame.display.update()
-    
+
     pygame.quit()
 
 

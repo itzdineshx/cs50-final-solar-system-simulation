@@ -3,7 +3,6 @@ import math
 from planets import planet_list
 pygame.init()
 
-
 # Set window
 WIDTH, HEIGHT = 1920, 1080
 win = pygame.display.set_mode((WIDTH, HEIGHT))
